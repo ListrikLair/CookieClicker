@@ -1,0 +1,28 @@
+#cookie{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 9rem;
+    width: 9rem;
+    max-width: 9rem;
+    max-height: 9rem;
+}
+img {
+    object-fit: cover;
+    width: 8rem;
+    height: 8rem;
+}
+img:hover{
+    width: 9rem;
+    height: 9rem;
+}
+img:active{
+    width: 7rem;
+    height: 7rem;
+}
+.disabledButton{
+    display: none;
+}
+.demon{
+    background-color: red;
+}
