@@ -2,7 +2,9 @@
 let cookies = 0;
 let cookiesPerClick = 1;
 let upgradeTier;
-let cost;
+let cost = 10;
+let lastCookieValue;
+
 // view
 updateView();
 function updateView() {
@@ -11,9 +13,9 @@ function updateView() {
     <div id="cookie" onclick="addPoints()"><img src="pics/cookie.jpg" alt=""></div>
     <div id="cookiePoints">${cookies} Cookies</div>
     <div id="cookiePoints">${cookiesPerClick} Cookie per click</div>
-    <button class="disabledButton" id="upgradeButton1" onclick="buyUpgrade(10, 1)">Buy Upgrade (10)</button> <br/>
-    <button class="disabledButton" id="upgradeButton2" onclick="buyUpgrade(100, 10)">Buy Upgrade (100)</button> <br/>
-    <button class="disabledButton" id="upgradeButton3" onclick="buyUpgrade(1000, 100)">Buy Upgrade (1000)</button> <br/>
+    <button class="disabledButton" id="upgradeButton1" onclick="buyUpgrade(10, 1)">Buy Upgrade (${cost})</button> <br/>
+    <button class="disabledButton" id="upgradeButton2" onclick="buyUpgrade(100, 10)">Buy Upgrade (${cost*10})</button> <br/>
+    <button class="disabledButton" id="upgradeButton3" onclick="buyUpgrade(1000, 100)">Buy Upgrade (${cost*100})</button> <br/>
     <button id="cheatButton" onclick="cheatUpgrade()">Don't click me</button>
     `;
     if (cookies >= 10) {
@@ -25,13 +27,24 @@ function updateView() {
     if (cookies >= 1000) {
         document.getElementById("upgradeButton3").classList.remove("disabledButton");
     }
-    if (cookies > 10000) {
-        alert("Over 10,000 cookies!\nYou Win!");
+    if (cookies > 10000 && lastCookieValue < 10000) {
+        alert("Over 10 000 cookies!\nYou Win!");
+    }
+    if (cookies > 1000000 && lastCookieValue < 1000000) {
+        alert("Over 1 000 000 cookies!\nYou're on fire!");
+    }
+    if (cookies > 1000000000 && lastCookieValue < 1000000000) {
+        alert("Over 1 000 000 000 cookies!\nYou good?..");
+    }
+    if (cookies > 1000000000000 && lastCookieValue < 1000000000000) {
+        alert("Over 1 000 000 000 000 cookies!\nNo.");
+        location.reload();
     }
 }
 
 // control
 function addPoints() {
+    lastCookieValue = cookies;
     cookies += cookiesPerClick;
     updateView()
 }
